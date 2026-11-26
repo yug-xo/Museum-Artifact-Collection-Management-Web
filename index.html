@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Museum Collection Management</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+<h1>Museum Collection Management System</h1>
+<p>Find any artifact, check its condition and see where it was exhibited.</p>
+</header>
+
+<main>
+
+<form id="searchForm" class="panel">
+<input type="text" name="keyword" placeholder="Keyword">
+<input type="text" name="category" placeholder="Category">
+<input type="text" name="origin" placeholder="Origin">
+<select name="condition" id="conditionFilter">
+<option value="">Any condition</option>
+</select>
+<input type="text" name="location" placeholder="Storage location">
+<input type="text" name="exhibition" placeholder="Exhibition title">
+<button type="button" id="clearButton">Clear filters</button>
+</form>
+
+<div class="toolbar">
+<p id="count"></p>
+<div>
+<button type="button" id="addButton" class="main-button">Add artifact</button>
+<button type="button" id="exportButton">Export CSV</button>
+<label class="button">Import CSV
+<input type="file" id="importFile" accept=".csv" hidden>
+</label>
+</div>
+</div>
+
+<p id="message" hidden></p>
+<ul id="report" hidden></ul>
+
+<div class="table-box">
+<table>
+<thead>
+<tr>
+<th>Accession no.</th>
+<th>Name</th>
+<th>Category</th>
+<th>Origin</th>
+<th>Condition</th>
+<th>Location</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody id="rows"></tbody>
+</table>
+<p id="empty" hidden>No artifacts match these filters. Clear a filter or add a new artifact.</p>
+</div>
+
+</main>
+
+<dialog id="formDialog">
+<form id="artifactForm">
+<h2 id="formTitle"></h2>
+<label>Accession no.<input type="text" name="accession_no" required></label>
+<label>Name<input type="text" name="name" required></label>
+<label>Category<input type="text" name="category"></label>
+<label>Origin<input type="text" name="origin"></label>
+<label>Period<input type="text" name="period"></label>
+<label>Condition<select name="condition" id="conditionField"></select></label>
+<label>Storage location<input type="text" name="location"></label>
+<label>Owner<input type="text" name="owner"></label>
+<label>Description<textarea name="description" rows="3"></textarea></label>
+<p id="formError" class="error"></p>
+<div class="buttons">
+<button type="submit" class="main-button">Save artifact</button>
+<button type="button" class="closeButton">Cancel</button>
+</div>
+</form>
+</dialog>
+
+<dialog id="viewDialog">
+<h2 id="viewTitle"></h2>
+<dl id="viewDetails"></dl>
+
+<h3>Exhibition history</h3>
+<table>
+<thead>
+<tr>
+<th>Title</th>
+<th>Venue</th>
+<th>Start</th>
+<th>End</th>
+<th></th>
+</tr>
+</thead>
+<tbody id="exhibitionRows"></tbody>
+</table>
+
+<form id="exhibitionForm">
+<h3>Add exhibition</h3>
+<input type="text" name="title" placeholder="Title" required>
+<input type="text" name="venue" placeholder="Venue" required>
+<label>Start<input type="date" name="start_date" required></label>
+<label>End<input type="date" name="end_date" required></label>
+<p id="exhibitionError" class="error"></p>
+<div class="buttons">
+<button type="submit" class="main-button">Add exhibition</button>
+<button type="button" class="closeButton">Close</button>
+</div>
+</form>
+</dialog>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
